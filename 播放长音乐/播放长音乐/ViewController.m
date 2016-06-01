@@ -15,11 +15,28 @@
 @end
 
 @implementation ViewController
+#pragma mark - lazy
+-(AVAudioPlayer*)player{
+    if (_player == nil) {
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"春上村树.wav" withExtension:nil];
+        
+        _player = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:nil];
+        [_player prepareToPlay];
+    }
+    return _player;
+}
+
+
+
+#pragma mark - 处理点击
 - (IBAction)start:(id)sender {
+    [self.player play];
 }
 - (IBAction)pause:(id)sender {
+    [self.player pause];
 }
 - (IBAction)stop:(id)sender {
+    [self.player stop];
 }
 
 - (void)viewDidLoad {
@@ -27,9 +44,6 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end
