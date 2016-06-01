@@ -37,6 +37,7 @@
 }
 - (IBAction)stop:(id)sender {
     [self.player stop];
+    self.player = nil;
 }
 
 - (void)viewDidLoad {
